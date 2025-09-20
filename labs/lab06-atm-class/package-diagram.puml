@@ -1,0 +1,44 @@
+@startuml PackageDiagram
+package "Zalo Mini App (System)" {
+  package "User Management" {
+    class Student
+    class Teacher
+  }
+
+  package "Exam Management" {
+    class Exam
+    class Question
+    class Attempt
+    class Answer
+  }
+
+  package "Evaluation" {
+    class Grading
+    class Score
+    class Ranking
+  }
+
+  package "Communication" {
+    class Notification
+  }
+
+  package "Infrastructure" {
+    class ZaloPlatform
+    class BackendAPI
+    class Firebase
+  }
+}
+
+Student --> Exam : "enrolls, takes"
+Teacher --> Exam : "creates, manages"
+Exam --> Question
+Exam --> Attempt
+Attempt --> Answer
+Attempt --> Score
+Score --> Ranking
+Notification --> Student
+Notification --> Teacher
+BackendAPI --> Firebase
+ZaloPlatform --> Student
+ZaloPlatform --> Teacher
+@enduml

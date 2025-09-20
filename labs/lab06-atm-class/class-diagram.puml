@@ -1,0 +1,66 @@
+@startuml ClassDiagram
+class Student {
+  +studentId: String
+  +name: String
+  +login()
+  +takeExam()
+  +viewResult()
+}
+
+class Teacher {
+  +teacherId: String
+  +name: String
+  +createExam()
+  +gradeEssay()
+}
+
+class Exam {
+  +examId: String
+  +title: String
+  +startAt: DateTime
+  +endAt: DateTime
+  +schedule()
+}
+
+class Question {
+  +questionId: String
+  +text: String
+  +type: String
+  +points: Int
+}
+
+class Attempt {
+  +attemptId: String
+  +submit()
+}
+
+class Answer {
+  +answerId: String
+  +content: String
+}
+
+class Score {
+  +scoreId: String
+  +value: Float
+}
+
+class Ranking {
+  +rankId: String
+  +position: Int
+}
+
+class Notification {
+  +notificationId: String
+  +message: String
+  +send()
+}
+
+Student "1" -- "*" Attempt
+Teacher "1" -- "*" Exam
+Exam "1" -- "*" Question
+Attempt "1" -- "*" Answer
+Attempt "1" -- "1" Score
+Score "1" -- "1" Ranking
+Notification --> Student
+Notification --> Teacher
+@enduml
