@@ -1,1 +1,31 @@
-
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ATM Login</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="card">
+    <h1>ATM Login</h1>
+    <form id="loginForm" novalidate>
+      <label>Username
+        <input id="username" name="username" required />
+      </label>
+      <label>Password
+        <input id="password" name="password" type="password" required minlength="4" />
+      </label>
+      <label class="row">
+        <input type="checkbox" id="remember" /> Remember me
+      </label>
+      <div class="actions">
+        <button type="submit">Login</button>
+        <button type="button" id="cancelBtn">Cancel</button>
+      </div>
+      <p id="msg" class="msg"></p>
+    </form>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
