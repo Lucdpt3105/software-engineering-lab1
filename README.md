@@ -5,9 +5,9 @@ Dự án này được phát triển trong môn Nhập môn Công nghệ Phần 
 Mục tiêu là áp dụng quy trình phát triển phần mềm, từ phân tích yêu cầu, thiết kế, lập trình, kiểm thử và triển khai.
   
 👥 Thành viên nhóm  
-Phùng Anh Lực - Leader   
-Nguyễn Thái Tuấn   
-Hoàng Cường   
+Hoàng Cường - Leader   
+Nguyễn Thái Tuấn
+Phùng Anh Lực   
 Hoàng Quang Minh   
 🎯 Use Case chính  
 Quản lý người dùng  
