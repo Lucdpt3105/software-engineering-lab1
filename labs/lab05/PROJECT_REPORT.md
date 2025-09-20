@@ -19,5 +19,5 @@
 ### Bước 1: Thiết kế Use Case:
 ![alt text](../lab02-usecase/UC%20Lớp.drawio.png)
 ### Bước 2: Thiết kế Sequence:
-### Bước 3: Prototype Form Login code:
+### Bước 3: Prototype Form Login:
 ![alt text](../lab04-login-form/loginform_image.png)
