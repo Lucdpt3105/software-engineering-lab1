@@ -50,8 +50,10 @@ Student → Mini App UI → Backend API: getResult(attemptId or examId) → Back
 - Cập nhật thống kê (hậu xử lý):    
 Sau khi lưu result: Backend API → Firebase: cập nhật aggregate stats (độ khó câu, distribution, average) và Backend API → Firebase: cập nhật Leaderboard/Rankings để Teacher/Student truy vấn.   
 + Nhắc lịch & Thông báo:   
-Backend API / Cloud Functions → Notification Service → gửi nhắc lịch thi, thông báo auto-submit, thông báo kết quả → Notification Service → Student (via Zalo OA/ZNS)
---------------------------------------------------------------------------------------------------------------------------------------------------------------------Đối tượng tham gia (Actors & Components)   
+Backend API / Cloud Functions → Notification Service → gửi nhắc lịch thi, thông báo auto-submit, thông báo kết quả → Notification Service → Student (via Zalo OA/ZNS)     
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       
+- Đối tượng tham gia (Actors & Components)     
 Teacher (Giáo viên)   
 + Đăng nhập vào Zalo Mini App / Web Portal.   
 + Tạo đề thi mới, nhập thông tin cơ bản (tên đề, môn, loại, thời gian, điểm tối đa…).
