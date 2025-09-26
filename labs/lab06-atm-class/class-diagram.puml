@@ -1,66 +1,114 @@
-@startuml ClassDiagram
+@startuml
+class User {
+  - userId: String
+  - name: String
+  - email: String
+  - role: String
+  + loginWithZalo(token): AuthResult
+  + updateProfile(data)
+}
 class Student {
-  +studentId: String
-  +name: String
-  +login()
-  +takeExam()
-  +viewResult()
+  - studentId: String
+  - classId: String
+  + viewExamList()
+  + startExam(examId)
+  + submitAnswer(attemptId, questionId, answer)
+  + submitExam(attemptId)
+  + viewResult(attemptId)
 }
-
 class Teacher {
-  +teacherId: String
-  +name: String
-  +createExam()
-  +gradeEssay()
+  - teacherId: String
+  - department: String
+  + createExam(examDTO)
+  + editExam(examId, examDTO)
+  + addQuestion(questionDTO)
+  + importFromExcel(file)
+  + gradeEssay(attemptId, questionId, score, feedback)
+  + viewStatistics(examId)
 }
-
 class Exam {
-  +examId: String
-  +title: String
-  +startAt: DateTime
-  +endAt: DateTime
-  +schedule()
+  - examId: String
+  - title: String
+  - subject: String
+  - type: String
+  - durationMinutes: int
+  - startAt: DateTime
+  - endAt: DateTime
+  - status: String
+  + addQuestion(q)
+  + validate(): ValidationResult
 }
 
 class Question {
-  +questionId: String
-  +text: String
-  +type: String
-  +points: Int
+  - questionId: String
+  - examId: String
+  - content: String
+  - mediaUrl: String
+  - type: String
+  - weight: float
+  - difficulty: String
+  + getChoices()
 }
-
+class Choice {
+  - choiceId: String
+  - questionId: String
+  - text: String
+  - isCorrect: boolean
+}
 class Attempt {
-  +attemptId: String
-  +submit()
+  - attemptId: String
+  - examId: String
+  - studentId: String
+  - startedAt: DateTime
+  - lastSavedAt: DateTime
+  - finishedAt: DateTime
+  - status: String
+  - score: float
+  + saveTempAnswer(questionId, answer)
+  + finalizeAndScore()
 }
-
 class Answer {
-  +answerId: String
-  +content: String
+  - answerId: String
+  - attemptId: String
+  - questionId: String
+  - response: String
+  - updatedAt: DateTime
+  - isAutoMarked: boolean
+  - autoMarkScore: float
+  - manualScore: float
+  - feedback: String
 }
-
-class Score {
-  +scoreId: String
-  +value: Float
+class Result {
+  - resultId: String
+  - attemptId: String
+  - totalScore: float
+  - rank: int
+  - generatedAt: DateTime
 }
-
-class Ranking {
-  +rankId: String
-  +position: Int
+class QuestionBank {
+  - bankId: String
+  - ownerId: String
+  - name: String
+  + search(criteria)
+  + addQuestion(q)
 }
-
 class Notification {
-  +notificationId: String
-  +message: String
-  +send()
+  - notificationId: String
+  - userId: String
+  - type: String
+  - content: String
+  - status: String
+  - sentAt: DateTime
+  + send()
 }
-
-Student "1" -- "*" Attempt
-Teacher "1" -- "*" Exam
-Exam "1" -- "*" Question
-Attempt "1" -- "*" Answer
-Attempt "1" -- "1" Score
-Score "1" -- "1" Ranking
-Notification --> Student
-Notification --> Teacher
+User <|-- Student
+User <|-- Teacher
+Teacher "1" -- "0..*" Exam : owns >
+Exam "1" -- "0..*" Question : contains >
+Question "1" -- "0..*" Choice : has >
+Student "1" -- "0..*" Attempt : makes >
+Attempt "1" -- "0..*" Answer : contains >
+Attempt "1" -- "0..1" Result : yields >
+QuestionBank "1" -- "0..*" Question : stores >
+Notification "0..*" -- "1" User : for >
 @enduml
