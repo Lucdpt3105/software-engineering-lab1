@@ -1,0 +1,12 @@
+📄Họ và tên: Hoàng Quang Minh
+#️⃣Mã số sinh viên: N23CCN106
+🎓 Sinh viên ngành Công nghệ thông tin
+
+🚀 Kỹ năng & Công cụ
+🐍 Python | 💠 PHP | ☕ Java | 🌐 HTML/CSS/JS | Express.js | MySQL
+🛠️ Git & GitHub, Visual Studio, VS Code, pycharm
+🛠️ Development process: Agile - Scrum, Waterfall  
+
+📫 Liên hệ
+Email: n23dccn106@student.ptithcm.edu.vn
+GitHub: github.com/minh7709
