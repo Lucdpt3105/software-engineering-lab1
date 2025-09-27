@@ -41,7 +41,7 @@ Bao gồm các bước:
 
 ### 5. Sprint Calendar (thời gian chạy Sprint)
 - Sprint 1: 27/09 – 11/10
-![Sprint Calendar](Screenshot 2025-09-27 144907.png)
+![Sprint Calendar](caledar.png)
 
 
 
