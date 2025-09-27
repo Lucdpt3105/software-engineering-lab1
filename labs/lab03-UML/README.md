@@ -1,29 +1,29 @@
 File mô tả Sequence Diagram Lab 03 – Zalo Mini App     
 Đối tượng tham gia (Actors & Components)   
 - Student (Học sinh)  
-+ Đăng nhập vào Zalo Mini App.   
-+ Mở Mini App, duyệt danh sách bài thi và chọn bài.  
-+ Nộp bài, xem điểm, xem giải thích đáp án và thứ hạng.    
-+ Nhận nhắc lịch học/thi và thông báo kết quả.    
-+ Tự động lưu tiến trình/đáp án (mỗi 30s) và có thể tiếp tục nếu mất kết nối.    
+Đăng nhập vào Zalo Mini App.   
+Mở Mini App, duyệt danh sách bài thi và chọn bài.  
+Nộp bài, xem điểm, xem giải thích đáp án và thứ hạng.    
+Nhận nhắc lịch học/thi và thông báo kết quả.    
+Tự động lưu tiến trình/đáp án (mỗi 30s) và có thể tiếp tục nếu mất kết nối.    
 - Mini App UI (Zalo Mini App)
-+ Hiển thị danh sách bài thi, thông tin bài, câu hỏi, trang xem lại, kết quả.   
-+ Thực hiện OAuth với Zalo Platform.   
-+ Gọi các endpoint: getExamList(), getExamDetail(examId), startExam(examId), submitAnswer(answer), autoSave(), submitExam(), getResult()...   
-+ Quản lý lưu tạm client-side khi mất kết nối, hiển thị cảnh báo.   
+Hiển thị danh sách bài thi, thông tin bài, câu hỏi, trang xem lại, kết quả.   
+Thực hiện OAuth với Zalo Platform.   
+Gọi các endpoint: getExamList(), getExamDetail(examId), startExam(examId), submitAnswer(answer), autoSave(), submitExam(), getResult()...   
+Quản lý lưu tạm client-side khi mất kết nối, hiển thị cảnh báo.   
 - Backend API (NodeJS/Express)
-+ Xử lý nghiệp vụ: cung cấp danh sách đề, chi tiết đề, phát tạo attempt, trả câu hỏi, nhận đáp án tạm thời, auto-save, tổng hợp & tính điểm, lưu kết quả cuối cùng, cập nhật leaderboard/statistics.   
-+ Xử lý auto-submit khi hết thời gian (timer/server-side).   
-+ Xử lý resume attempt khi học sinh kết nối lại.   
-+ Giao tiếp với Firebase để đọc/ghi dữ liệu.   
+Xử lý nghiệp vụ: cung cấp danh sách đề, chi tiết đề, phát tạo attempt, trả câu hỏi, nhận đáp án tạm thời, auto-save, tổng hợp & tính điểm, lưu kết quả cuối cùng, cập nhật leaderboard/statistics.   
+Xử lý auto-submit khi hết thời gian (timer/server-side).   
+Xử lý resume attempt khi học sinh kết nối lại.   
+Giao tiếp với Firebase để đọc/ghi dữ liệu.   
 - Firebase (Firestore / Storage)      
-+ Lưu trữ: Users, Exams, Questions, Attempts (temp + final), Answers, Results, Leaderboards, file (images, excel).   
-+ Cung cấp dữ liệu câu hỏi, lưu đáp án tạm thời, lưu kết quả cuối cùng, phục vụ thống kê.   
+Lưu trữ: Users, Exams, Questions, Attempts (temp + final), Answers, Results, Leaderboards, file (images, excel).   
+Cung cấp dữ liệu câu hỏi, lưu đáp án tạm thời, lưu kết quả cuối cùng, phục vụ thống kê.   
 - Zalo Platform
-+ Cung cấp OAuth để xác thực người dùng (access token).   
-+ Môi trường chạy Mini App (UI trên Zalo).   
+Cung cấp OAuth để xác thực người dùng (access token).   
+Môi trường chạy Mini App (UI trên Zalo).   
 - Notification Service (Zalo OA / ZNS / Cloud Functions)   
-+ Gửi thông báo nhắc lịch thi, nhắc chấm bài, gửi thông báo kết quả thi, thông báo auto-submit do hết giờ.   
+Gửi thông báo nhắc lịch thi, nhắc chấm bài, gửi thông báo kết quả thi, thông báo auto-submit do hết giờ.   
 - Thông điệp trao đổi (Messages)    
 + Use Case chính (theo Sequence Diagram của Student)   
 - Đăng nhập Zalo OAuth:    
@@ -52,32 +52,32 @@ Sau khi lưu result: Backend API → Firebase: cập nhật aggregate stats (đ�
 + Nhắc lịch & Thông báo:   
 Backend API / Cloud Functions → Notification Service → gửi nhắc lịch thi, thông báo auto-submit, thông báo kết quả → Notification Service → Student (via Zalo OA/ZNS)     
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-- Đối tượng tham gia (Actors & Components)       
-Teacher (Giáo viên)      
-+ Đăng nhập vào Zalo Mini App / Web Portal.     
-+ Tạo đề thi mới, nhập thông tin cơ bản (tên đề, môn, loại, thời gian, điểm tối đa…).  
-+ Thêm câu hỏi mới hoặc chọn từ ngân hàng, hoặc import từ file Excel.      
-+ Cấu hình trộn câu, hiển thị kết quả, số lần làm bài.     
-+ Lưu đề thi, xuất bản hoặc lên lịch thi.      
-+ Nhận nhắc lịch chấm / lịch thi, xem thống kê độ khó và điểm số.      
+Đối tượng tham gia (Actors & Components)       
+- Teacher (Giáo viên)      
+- Đăng nhập vào Zalo Mini App / Web Portal.       
+Tạo đề thi mới, nhập thông tin cơ bản (tên đề, môn, loại, thời gian, điểm tối đa…).  
+Thêm câu hỏi mới hoặc chọn từ ngân hàng, hoặc import từ file Excel.      
+Cấu hình trộn câu, hiển thị kết quả, số lần làm bài.     
+Lưu đề thi, xuất bản hoặc lên lịch thi.      
+Nhận nhắc lịch chấm / lịch thi, xem thống kê độ khó và điểm số.      
 - Mini App UI / Web Portal     
-+ Hiển thị form tạo đề thi, ngân hàng câu hỏi, tính năng import file Excel.   
-+ Gọi các API: getCreateExamForm(), submitExamInfo(), addQuestion(), uploadImage(), importFromExcel(), validateExam(), saveExam()…   
-+ Tự động lưu nháp mỗi 2 phút.      
+Hiển thị form tạo đề thi, ngân hàng câu hỏi, tính năng import file Excel.   
+Gọi các API: getCreateExamForm(), submitExamInfo(), addQuestion(), uploadImage(), importFromExcel(), validateExam(), saveExam()…   
+Tự động lưu nháp mỗi 2 phút.      
 - Backend API (NodeJS/Express)    
-+ Xử lý nghiệp vụ tạo đề thi, lưu nháp, thêm câu hỏi, import Excel, upload hình ảnh, validate cấu hình, lưu đề thi cuối cùng.     
-+ Giao tiếp với Firebase để lưu trữ đề thi/câu hỏi/ngân hàng.   
-+ Tạo bản sao đề thi (clone exam).   
+Xử lý nghiệp vụ tạo đề thi, lưu nháp, thêm câu hỏi, import Excel, upload hình ảnh, validate cấu hình, lưu đề thi cuối cùng.     
+Giao tiếp với Firebase để lưu trữ đề thi/câu hỏi/ngân hàng.   
+Tạo bản sao đề thi (clone exam).   
 - Firebase (Firestore / Storage)   
-+ Lưu Users (role Teacher), Exams, Questions, BankQuestions, Imports.   
-+ Lưu hình ảnh, file Excel, cấu hình đề thi.   
-+ Trả dữ liệu cho API khi Teacher cần xem ngân hàng hoặc xem preview đề thi.   
+Lưu Users (role Teacher), Exams, Questions, BankQuestions, Imports.   
+Lưu hình ảnh, file Excel, cấu hình đề thi.   
+Trả dữ liệu cho API khi Teacher cần xem ngân hàng hoặc xem preview đề thi.   
 - Zalo Platform   
-+ Cung cấp OAuth để xác thực giáo viên.
-+ Là môi trường chạy Mini App / Web Portal.   
+Cung cấp OAuth để xác thực giáo viên.
+Là môi trường chạy Mini App / Web Portal.   
 - Notification Service (Zalo OA / Cloud Functions)   
-+ Gửi nhắc nhở giáo viên về lịch chấm, lịch thi, hoặc trạng thái import/đề thi.   
-+ Thông báo “Đề thi tạo thành công” hoặc lỗi import.   
+Gửi nhắc nhở giáo viên về lịch chấm, lịch thi, hoặc trạng thái import/đề thi.   
+Thông báo “Đề thi tạo thành công” hoặc lỗi import.   
 - Thông điệp trao đổi (Messages)   
 Use Case chính (theo Sequence Diagram của Teacher)    
 - Đăng nhập Zalo OAuth:   
