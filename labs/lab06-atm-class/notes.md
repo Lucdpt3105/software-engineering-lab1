@@ -132,16 +132,42 @@
 - **Methods**
   - `send(): void`
 ---
-### 1.2 Relationships
-- `Teacher` **extends** `User`.
-- `Student` **extends** `User`.
-- `Teacher` **creates** `Exam` → `Exam` **aggregates** `Question`.
-- `Exam` **uses** `QuestionBank` để import câu hỏi.
-- `Question` **aggregates** `Choice`.
-- `Student` **starts** `Attempt` → `Attempt` **aggregates** `Answer`.
-- `Result` **belongs to** `Attempt`.
-- `Notification` **sent to** `User`.
-- `Teacher` **grades** `Answer` trong `Attempt`.
+## 1.2 Relationships 
+- **User – Notification**:  
+  - Quan hệ **1..*** (một User có thể nhận nhiều Notification).  
+  - Notification **belongs to** User qua `userId`.
+- **User (Base) – Teacher / Student**:  
+  - `Teacher` **kế thừa (extends)** `User`.  
+  - `Student` **kế thừa (extends)** `User`.
+- **Teacher – Exam**:  
+  - Quan hệ **1..*** (một Teacher có thể tạo nhiều Exam).  
+  - `Teacher` **owns** `Exam` qua `createdBy` hoặc `teacherId`.
+- **Exam – Question**:  
+  - Quan hệ **1..*** (một Exam chứa nhiều Question).  
+  - `Question.examId` tham chiếu tới `Exam.examId`.
+- **QuestionBank – Question**:  
+  - Quan hệ **1..*** (một QuestionBank chứa nhiều Question).  
+  - `Question.examId` có thể nullable nếu thuộc QuestionBank.
+- **Question – Choice**:  
+  - Quan hệ **1..*** (một Question có nhiều Choice khi là MCQ).  
+  - `Choice.questionId` tham chiếu tới `Question.questionId`.
+- **Student – Attempt**:  
+  - Quan hệ **1..*** (một Student có thể làm nhiều Attempt cho các Exam).  
+  - `Attempt.studentId` tham chiếu `Student.userId`.
+- **Attempt – Exam**:  
+  - Quan hệ **n..1** (nhiều Attempt thuộc một Exam).  
+  - `Attempt.examId` tham chiếu `Exam.examId`.
+- **Attempt – Answer**:  
+  - Quan hệ **1..*** (một Attempt có nhiều Answer).  
+  - `Answer.attemptId` tham chiếu `Attempt.attemptId`.
+- **Answer – Question**:  
+  - Quan hệ **n..1** (mỗi Answer thuộc về một Question cụ thể).  
+  - `Answer.questionId` tham chiếu `Question.questionId`.
+- **Attempt – Result**:  
+  - Quan hệ **1..1** (mỗi Attempt sinh ra một Result).  
+  - `Result.attemptId` tham chiếu `Attempt.attemptId`.
+- **Teacher – Answer** (essay grading):  
+  - Quan hệ gián tiếp: `Teacher` có thể chấm `Answer` của `Attempt` khi loại câu hỏi là tự luận.  
 ---
 ## 2. Package Diagram
 ### 2.1 Danh sách Package & Components
@@ -193,15 +219,23 @@
   - Gửi thông báo OA/ZNS.
   - Xử lý tác vụ nền.
 ---
-### 2.2 Relationships giữa các Package
-- **UI → API**:
-  - `StudentUI` gọi `ExamService`, `AttemptService`, `ResultService`.
-  - `TeacherUI` gọi `ExamService`, `QuestionService`, `ImportService`, `StatisticsService`.
-  - `AuthUI` gọi `AuthService`.
-- **API → Data**:
-  - Các Service đọc/ghi dữ liệu từ Firestore/Storage.
-- **API → External Services**:
-  - `AuthService` kết nối `ZaloOAuth` để xác thực.
-  - `NotificationOrchestrator` gọi `ZaloNotification`.
-- **CloudFunctions & Workers**:
-  - Auto-save, auto-submit, thống kê.
+## 2.2 Relationships 
+- **UI Layer → API Layer**  
+  - StudentUI gọi ExamService, AttemptService, ResultService.  
+  - TeacherUI gọi ExamService, QuestionService, ImportService, StatisticsService.  
+  - AuthUI gọi AuthService.  
+  - Đây là quan hệ **phụ thuộc / uses**: UI phụ thuộc vào API để lấy dữ liệu.
+- **API Layer → Data Layer**  
+  - AuthService truy cập UsersCollection.  
+  - ExamService truy cập ExamsCollection, QuestionsCollection.  
+  - AttemptService truy cập AttemptsCollection, AnswersCollection.  
+  - ResultService truy cập ResultsCollection.  
+  - Đây là quan hệ **phụ thuộc / uses**: API phụ thuộc vào Data Layer để lưu/đọc dữ liệu.
+- **API Layer → External Services (Infra)**  
+  - AuthService dùng ZaloOAuth để xác thực người dùng.  
+  - NotificationOrchestrator gọi ZaloNotification (ZNS/Zalo OA) để gửi nhắc nhở, kết quả.  
+  - CloudFunctions/Workers tự động chạy auto-save, auto-submit, thống kê.  
+  - Đây là quan hệ **phụ thuộc / uses**: API gọi các External Services để mở rộng chức năng.
+- **External Services ↔ Data Layer**  
+  - CloudFunctions đọc/ghi dữ liệu vào Firestore/Storage.  
+  - Đây là quan hệ **trực tiếp** để hỗ trợ tác vụ nền (ví dụ batch compute thống kê).
