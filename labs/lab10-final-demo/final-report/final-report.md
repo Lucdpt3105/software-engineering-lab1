@@ -11,23 +11,23 @@
 
 ## 2. Mô hình UML
 
-* Use Case Diagram (vai trò: Học sinh, Giáo viên, Admin, chức năng chính)
+# Use Case Diagram (vai trò: Học sinh, Giáo viên, Admin, chức năng chính)
 ![Use Case học sinh](https://github.com/1yn3r/software-engineering-lab/blob/bc52245931fba87d32cd15d9a08a4aa049641219/labs/lab10-final-demo/final-report/Use%20Cases/h%E1%BB%8Dc%20sinh.jpg)
 ![Use Case Giáo Viên](https://github.com/1yn3r/software-engineering-lab/blob/1c9969ad95aaa989d819b157e89c145f71fd1992/labs/lab02-usecase/NewUC/giaovien.jpg)
 ![Use Case Admin + Hệ thống](https://github.com/1yn3r/software-engineering-lab/blob/1c9969ad95aaa989d819b157e89c145f71fd1992/labs/lab02-usecase/NewUC/admin%2Bhethong.jpg)
 
 
-* Class Diagram (cấu trúc đối tượng, quan hệ giữa các class)
+# Class Diagram (cấu trúc đối tượng, quan hệ giữa các class)
 ![Class diagram](https://github.com/1yn3r/software-engineering-lab/blob/1c9969ad95aaa989d819b157e89c145f71fd1992/labs/lab06-atm-class/Class%20diagram.png)     
-*Package Diagram:     
+# Package Diagram:     
 
 ![Package Diagram](https://github.com/1yn3r/software-engineering-lab/blob/1c9969ad95aaa989d819b157e89c145f71fd1992/labs/lab06-atm-class/Package_Diagram.png)   
-* Sequence Diagram (luồng thực hiện ví dụ: đăng nhập, làm bài thi, chấm điểm tự động)
-* Đối với giảng viên
+# Sequence Diagram (luồng thực hiện ví dụ: đăng nhập, làm bài thi, chấm điểm tự động)
+# Đối với giảng viên
   ![Sequence Giảng Viên](https://github.com/1yn3r/software-engineering-lab/blob/6279ebd0e6bbbef10d77fdce993835011fb2c52e/labs/lab03-UML/Gi%E1%BA%A3ng%20Vi%C3%AAn.png)
-* Đối với học sinh
+# Đối với học sinh
  ![Sequence Học Viên](https://github.com/1yn3r/software-engineering-lab/blob/6279ebd0e6bbbef10d77fdce993835011fb2c52e/labs/lab03-UML/Student.png)
-* Sơ đồ luồng (quy trình làm bài và nộp bài)
+# Sơ đồ luồng (quy trình làm bài và nộp bài)
 ![UC ](https://github.com/1yn3r/software-engineering-lab/blob/6279ebd0e6bbbef10d77fdce993835011fb2c52e/labs/lab03-UML/AnhPhanTichNghiepVu1ChucNang.png)
 ---
 
@@ -36,7 +36,7 @@
 ### 3.1 Database
 * ERD (Entity Relationship Diagram)
  ![ERD](https://github.com/1yn3r/software-engineering-lab/blob/6279ebd0e6bbbef10d77fdce993835011fb2c52e/labs/lab05/ERDForMiniAPP.png)
-* Mô tả các bảng chính (Users, Subjects, Exams, Questions, Attempts, Results, …)
+# Mô tả các bảng chính (Users, Subjects, Exams, Questions, Attempts, Results, …)
 
 ---
 
@@ -111,7 +111,8 @@
 * Số sprint đã thực hiện
 * Công việc hoàn thành trong từng sprint
 * Đánh giá tiến độ 
-
+![Jira](https://github.com/1yn3r/software-engineering-lab/blob/6b9ab804b8276fbaa1d2d22914df89ec0385c614/labs/Lab%2009%20%E2%80%93%20Qu%E1%BA%A3n%20l%C3%BD%20d%E1%BB%B1%20%C3%A1n%20ATM%20tr%C3%AAn%20Jira/list.png)
+  
 ---
 
 ## 5. Kết luận & Định hướng mở rộng
