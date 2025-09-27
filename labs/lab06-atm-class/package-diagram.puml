@@ -1,67 +1,44 @@
 @startuml
-package "UI Layer\n(Zalo Mini App / Web Portal)" {
-  class StudentUI
-  class TeacherUI
-  class AuthUI
+package "UI Layer - Zalo Mini App" {
+    class "Student Module" as StudentUI
+    class "Teacher Module" as TeacherUI
+    class "Auth Module (OAuth)" as AuthUI
 }
-package "API Layer\n(NodeJS / Express)" {
-  class AuthService
-  class ExamService
-  class QuestionService
-  class AttemptService
-  class AnswerService
-  class ResultService
-  class ImportService
-  class StatisticsService
-  class NotificationOrchestrator
+package "API Layer - NodeJS/Express" {
+    class "Auth Service" as AuthAPI
+    class "Exam Service" as ExamAPI
+    class "Question Service" as QuestionAPI
+    class "Attempt Service" as AttemptAPI
+    class "Result Service" as ResultAPI
+    class "Statistics Service" as StatsAPI
 }
-package "Data Layer\n(Firestore / Storage)" {
-  class UsersCollection
-  class ExamsCollection
-  class QuestionsCollection
-  class ChoicesCollection
-  class AttemptsCollection
-  class AnswersCollection
-  class ResultsCollection
-  class QuestionBankCollection
-  class AttachmentsStorage
-  class Leaderboards
+package "Data Layer - Firebase" {
+    class "Users Collection" as UsersDB
+    class "Exams Collection" as ExamsDB
+    class "Questions Collection" as QuestionsDB
+    class "Attempts Collection" as AttemptsDB
+    class "Results Collection" as ResultsDB
+    class "Leaderboard Collection" as LeaderboardDB
+}
+package "Notification Layer" {
+    class "Reminder Service" as Reminder
+    class "Result Notification" as ResultNotif
 }
 
-package "Infra / External" {
-  class ZaloOAuth
-  class ZaloNotification
-  class CloudFunctions
-  class Workers
-}
-StudentUI --> ExamService : getExamList(), getExamDetail()
-StudentUI --> AttemptService : startAttempt(), submitAnswer(), autoSave()
-StudentUI --> ResultService : getResult()
-
-TeacherUI --> ExamService : create/edit/publish
-TeacherUI --> QuestionService : add/select question
-TeacherUI --> ImportService : importFromExcel()
-TeacherUI --> StatisticsService : getStatistics()
-
-AuthUI --> AuthService : loginWithZalo()
-
-AuthService --> UsersCollection
-ExamService --> ExamsCollection
-QuestionService --> QuestionsCollection
-QuestionService --> ChoicesCollection
-AttemptService --> AttemptsCollection
-AnswerService --> AnswersCollection
-ResultService --> ResultsCollection
-StatisticsService --> Leaderboards
-ImportService --> AttachmentsStorage
-ExamService --> QuestionBankCollection
-
-AuthService --> ZaloOAuth
-NotificationOrchestrator --> ZaloNotification
-CloudFunctions --> AttemptService : schedule/autoSubmit
-CloudFunctions --> StatisticsService : batchCompute
-
-' Notes
-note left: UI Layer = Mini App (student+teacher) + Auth UI
-note right: Data Layer = Firestore collections + Storage for files
+' Mapping / Relations
+StudentUI --> ExamAPI
+StudentUI --> AttemptAPI
+StudentUI --> ResultAPI
+TeacherUI --> ExamAPI
+TeacherUI --> QuestionAPI
+TeacherUI --> StatsAPI
+AuthUI --> AuthAPI
+ExamAPI --> ExamsDB
+QuestionAPI --> QuestionsDB
+AttemptAPI --> AttemptsDB
+ResultAPI --> ResultsDB
+StatsAPI --> LeaderboardDB
+AuthAPI --> UsersDB
+ResultAPI --> ResultNotif
+ExamAPI --> Reminder
 @enduml
