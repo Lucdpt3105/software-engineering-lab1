@@ -15,8 +15,7 @@
 - **Admin**: quản lý user 👥, môn học 📖, gói subscription 💳, thống kê 📈.  
 - **System**: gửi thông báo 🔔, cập nhật leaderboard 🏆, nhắc deadline ⏰.  
 
-### 2.2. Database & ERD 🗄️
-Theo file `DBMiniAppStudy.sql`, cơ sở dữ liệu chính gồm:  
+### 2.2. Database & ERD 🗄️ 
 - **Users** 👤: thông tin tài khoản (student, teacher, admin).  
 - **Subjects – Topics – StudyMaterials** 📚: quản lý môn học, chủ đề, tài liệu học.  
 - **Questions – Answers – QuestionTypes** ❓: ngân hàng câu hỏi và đáp án.  
