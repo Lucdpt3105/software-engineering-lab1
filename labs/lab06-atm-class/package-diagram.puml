@@ -1,44 +1,67 @@
-@startuml PackageDiagram
-package "Zalo Mini App (System)" {
-  package "User Management" {
-    class Student
-    class Teacher
-  }
-
-  package "Exam Management" {
-    class Exam
-    class Question
-    class Attempt
-    class Answer
-  }
-
-  package "Evaluation" {
-    class Grading
-    class Score
-    class Ranking
-  }
-
-  package "Communication" {
-    class Notification
-  }
-
-  package "Infrastructure" {
-    class ZaloPlatform
-    class BackendAPI
-    class Firebase
-  }
+@startuml
+package "UI Layer\n(Zalo Mini App / Web Portal)" {
+  class StudentUI
+  class TeacherUI
+  class AuthUI
+}
+package "API Layer\n(NodeJS / Express)" {
+  class AuthService
+  class ExamService
+  class QuestionService
+  class AttemptService
+  class AnswerService
+  class ResultService
+  class ImportService
+  class StatisticsService
+  class NotificationOrchestrator
+}
+package "Data Layer\n(Firestore / Storage)" {
+  class UsersCollection
+  class ExamsCollection
+  class QuestionsCollection
+  class ChoicesCollection
+  class AttemptsCollection
+  class AnswersCollection
+  class ResultsCollection
+  class QuestionBankCollection
+  class AttachmentsStorage
+  class Leaderboards
 }
 
-Student --> Exam : "enrolls, takes"
-Teacher --> Exam : "creates, manages"
-Exam --> Question
-Exam --> Attempt
-Attempt --> Answer
-Attempt --> Score
-Score --> Ranking
-Notification --> Student
-Notification --> Teacher
-BackendAPI --> Firebase
-ZaloPlatform --> Student
-ZaloPlatform --> Teacher
+package "Infra / External" {
+  class ZaloOAuth
+  class ZaloNotification
+  class CloudFunctions
+  class Workers
+}
+StudentUI --> ExamService : getExamList(), getExamDetail()
+StudentUI --> AttemptService : startAttempt(), submitAnswer(), autoSave()
+StudentUI --> ResultService : getResult()
+
+TeacherUI --> ExamService : create/edit/publish
+TeacherUI --> QuestionService : add/select question
+TeacherUI --> ImportService : importFromExcel()
+TeacherUI --> StatisticsService : getStatistics()
+
+AuthUI --> AuthService : loginWithZalo()
+
+AuthService --> UsersCollection
+ExamService --> ExamsCollection
+QuestionService --> QuestionsCollection
+QuestionService --> ChoicesCollection
+AttemptService --> AttemptsCollection
+AnswerService --> AnswersCollection
+ResultService --> ResultsCollection
+StatisticsService --> Leaderboards
+ImportService --> AttachmentsStorage
+ExamService --> QuestionBankCollection
+
+AuthService --> ZaloOAuth
+NotificationOrchestrator --> ZaloNotification
+CloudFunctions --> AttemptService : schedule/autoSubmit
+CloudFunctions --> StatisticsService : batchCompute
+
+' Notes
+note left: UI Layer = Mini App (student+teacher) + Auth UI
+note right: Data Layer = Firestore collections + Storage for files
 @enduml
