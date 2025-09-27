@@ -18,10 +18,10 @@
 
 
 * Class Diagram (cấu trúc đối tượng, quan hệ giữa các class)
-![Class diagram](https://github.com/1yn3r/software-engineering-lab/blob/1c9969ad95aaa989d819b157e89c145f71fd1992/labs/lab06-atm-class/Class%20diagram.png)
-*Package Diagram:  
+![Class diagram](https://github.com/1yn3r/software-engineering-lab/blob/1c9969ad95aaa989d819b157e89c145f71fd1992/labs/lab06-atm-class/Class%20diagram.png)     
+*Package Diagram:     
 
-![Package Diagram](https://github.com/1yn3r/software-engineering-lab/blob/1c9969ad95aaa989d819b157e89c145f71fd1992/labs/lab06-atm-class/Package_Diagram.png)
+![Package Diagram](https://github.com/1yn3r/software-engineering-lab/blob/1c9969ad95aaa989d819b157e89c145f71fd1992/labs/lab06-atm-class/Package_Diagram.png)   
 * Sequence Diagram (luồng thực hiện ví dụ: đăng nhập, làm bài thi, chấm điểm tự động)
 * Đối với giảng viên
   ![Sequence Giảng Viên](https://github.com/1yn3r/software-engineering-lab/blob/6279ebd0e6bbbef10d77fdce993835011fb2c52e/labs/lab03-UML/Gi%E1%BA%A3ng%20Vi%C3%AAn.png)
@@ -37,7 +37,6 @@
 * ERD (Entity Relationship Diagram)
  ![ERD](https://github.com/1yn3r/software-engineering-lab/blob/6279ebd0e6bbbef10d77fdce993835011fb2c52e/labs/lab05/ERDForMiniAPP.png)
 * Mô tả các bảng chính (Users, Subjects, Exams, Questions, Attempts, Results, …)
-Ừ được chứ 👍. Bạn có thể bỏ markdown heading `##` và bullet `*` đi, chỉ để plain text thôi. Ví dụ như này:
 
 ---
 
@@ -89,12 +88,12 @@
 
 ### 3.2 Login form + Chức năng demo
 
-* Đăng nhập/Đăng ký
-  ![Login](https://github.com/1yn3r/software-engineering-lab/blob/a7203e2732188ed0f1c0d87c405463fcc9c3ecd9/labs/lab04-login-form/loginform_image.png)
-* Tạo đề thi và câu hỏi
-* Làm bài & nộp bài thi
-* Chấm điểm tự động & lưu kết quả
-    ![Result](https://github.com/1yn3r/software-engineering-lab/blob/7fc96f4f434db71cb7bca4483003f1909dd35748/labs/lab07/z7057178444065_1b7446cad25de483feaa08054af5242f.jpg)
+* Đăng nhập/Đăng ký    
+  ![Login](https://github.com/1yn3r/software-engineering-lab/blob/a7203e2732188ed0f1c0d87c405463fcc9c3ecd9/labs/lab04-login-form/loginform_image.png)     
+* Tạo đề thi và câu hỏi    
+* Làm bài & nộp bài thi   
+* Chấm điểm tự động & lưu kết quả   
+    ![Result](https://github.com/1yn3r/software-engineering-lab/blob/7fc96f4f434db71cb7bca4483003f1909dd35748/labs/lab07/z7057178444065_1b7446cad25de483feaa08054af5242f.jpg)    
 
 ---
 
