@@ -169,16 +169,16 @@
 - **Teacher – Answer** (essay grading):  
   - Quan hệ gián tiếp: `Teacher` có thể chấm `Answer` của `Attempt` khi loại câu hỏi là tự luận.  
 ---
-# 2. Package Diagram
-## 2.1 Danh sách Package & Components
-### UI Layer (Zalo Mini App / Web Portal)
-**Components**
-- StudentUI
-- TeacherUI
-- AuthUI
-**Nhiệm vụ**
-- Hiển thị giao diện cho học sinh và giáo viên.  
-- Gửi yêu cầu đến Backend API (Exam, Attempt, Result, Statistics, …).  
+# 2. Package Diagram    
+## 2.1 Danh sách Package & Components  
+### UI Layer (Zalo Mini App / Web Portal)  
+**Components**  
+- StudentUI    
+- TeacherUI  
+- AuthUI    
+**Nhiệm vụ**   
+- Hiển thị giao diện cho học sinh và giáo viên.    
+- Gửi yêu cầu đến Backend API (Exam, Attempt, Result, Statistics, …).    
 ---
 ### API Layer (NodeJS / Express Services)
 **Components**
@@ -187,11 +187,11 @@
 - QuestionService
 - AttemptService
 - ResultService
-- StatisticsService
+- StatisticsService  
 **Nhiệm vụ**
 - Xử lý toàn bộ nghiệp vụ chính.  
 - Là cầu nối giữa UI Layer và Data Layer.  
-- Tích hợp với Notification Layer để gửi nhắc nhở và kết quả.  
+- Tích hợp với Notification Layer để gửi nhắc nhở và kết quả.    
 ---
 ### Data Layer (Firestore / Storage)
 **Collections**
@@ -200,14 +200,14 @@
 - QuestionsCollection
 - AttemptsCollection
 - ResultsCollection
-- Leaderboards
+- Leaderboards   
 **Nhiệm vụ**
 - Lưu trữ dữ liệu người dùng, đề thi, câu hỏi, kết quả, bảng xếp hạng.  
 ---
 ### Notification Layer
 **Components**
 - ReminderService
-- ResultNotification
+- ResultNotification   
 **Nhiệm vụ**
 - Gửi nhắc nhở làm bài thi.  
 - Gửi thông báo kết quả cho học sinh.  
@@ -229,3 +229,4 @@
   - ExamService ↔ ReminderService.  
   - ResultService ↔ ResultNotification.  
   - → Quan hệ *phụ thuộc / uses*: API gọi Notification để gửi thông báo.  
+
