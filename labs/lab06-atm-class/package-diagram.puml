@@ -24,7 +24,6 @@ package "Notification Layer" {
     class "Reminder Service" as Reminder
     class "Result Notification" as ResultNotif
 }
-
 ' Mapping / Relations
 StudentUI --> ExamAPI
 StudentUI --> AttemptAPI
