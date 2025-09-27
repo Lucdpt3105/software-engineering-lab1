@@ -14,8 +14,33 @@
 - **Teacher**: tạo chủ đề 🗂️, ra đề 📑, quản lý câu hỏi ❓, chấm điểm ✅, tổ chức meeting online 💻.  
 - **Admin**: quản lý user 👥, môn học 📖, gói subscription 💳, thống kê 📈.  
 - **System**: gửi thông báo 🔔, cập nhật leaderboard 🏆, nhắc deadline ⏰.  
-
-### 2.2. Database & ERD 🗄️ 
+### 2.2. Sequence Diagrams 🔁
+#### 2.2.1. Luồng học của Student 👩‍🎓
+- Student đăng nhập 🔑  
+- Chọn khóa học 📚 và xem tài liệu 📄  
+- Làm quiz/thi 📝  
+- Nhận điểm và thông báo 📊🔔  
+#### 2.2.2. Luồng nộp bài tập ✉️
+- Student upload file 📎  
+- Backend lưu file + metadata 🗄️  
+- Teacher nhận thông báo 👨‍🏫  
+- Teacher chấm điểm ✅ và gửi phản hồi 🔔  
+#### 2.2.3. Luồng thi chính thức (Exam) 📝
+- Student bắt đầu thi 🏁  
+- Trả lời câu hỏi ❓  
+- Hệ thống lưu kết quả 🗄️  
+- Tính điểm và gửi thông báo 📊🔔  
+#### 2.2.4. Luồng subscription & thanh toán 💳
+- User chọn gói 📦  
+- Thanh toán qua Payment Gateway 🧾  
+- Backend cập nhật `payments` + `subscriptions` 🗄️  
+- Thông báo kích hoạt gói 🔔  
+#### 2.2.5. Luồng job hệ thống ⏰
+- Cron job kiểm tra deadline ⏳  
+- Gửi nhắc nhở 🔔  
+- Backup dữ liệu 💾  
+- Cập nhật leaderboard 🏆  
+### 2.3. Database & ERD 🗄️ 
 - **Users** 👤: thông tin tài khoản (student, teacher, admin).  
 - **Subjects – Topics – StudyMaterials** 📚: quản lý môn học, chủ đề, tài liệu học.  
 - **Questions – Answers – QuestionTypes** ❓: ngân hàng câu hỏi và đáp án.  
@@ -25,14 +50,11 @@
 - **Badges – UserBadges – Leaderboard – DailyChallenges – UserChallenges** 🏅🔥: gamification (huy hiệu, bảng xếp hạng, thử thách hằng ngày).  
 - **ChatGroups – ChatMessages – ForumQuestions – ForumAnswers – Meetings** 💬👨‍👩‍👧‍👦: tương tác, trao đổi học tập.  
 - **Feedbacks – Announcements – Payments – Subscriptions** 📨📢💳: quản trị hệ thống, gói học, góp ý, thông báo.  
-
-### 2.3. Form Login Code 🔑
+### 2.4. Form Login Code 🔑
 - **Frontend**: `index.html`, `styles.css`, `main.js` với form đăng nhập.  
 - **Backend**: API xử lý đăng nhập ⚙️, kiểm tra user/password trong bảng `users`.  
-- Đã viết **unit test** 🧪 cho module xác thực và **integration test** 🔍 cho form login.  
-
+- Đã viết **unit test** 🧪 cho module xác thực và **integration test** 🔍 cho form login.
 ---
-
 ## 3. Quy trình làm việc 📋
 
 1. **Phân tích yêu cầu** 🔎  
