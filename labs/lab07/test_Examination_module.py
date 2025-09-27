@@ -114,16 +114,23 @@ class TestExaminationModule(unittest.TestCase):
         mock_conn.commit.assert_called_once()
 
 
+# ------------------------------
+# ------------------------------
+class VerboseTestResult(unittest.TextTestResult):
+    def addSuccess(self, test):
+        super().addSuccess(test)
+        self.stream.writeln(f"✅ {test._testMethodName} PASSED")
+
+    def addFailure(self, test, err):
+        super().addFailure(test, err)
+        self.stream.writeln(f"❌ {test._testMethodName} FAILED")
+
+    def addError(self, test, err):
+        super().addError(test, err)
+        self.stream.writeln(f"⚠️ {test._testMethodName} ERROR")
+
+
 if __name__ == "__main__":
-    unittest.main()
-"""
-has_attempted đúng → pass
-
-has_attempted sai → pass
-
-get_questions trả về câu hỏi + đáp án → pass
-
-take_exam khi user đã làm rồi → pass
-
-take_exam khi user mới làm → pass
-"""
+    suite = unittest.defaultTestLoader.loadTestsFromTestCase(TestExaminationModule)
+    runner = unittest.TextTestRunner(resultclass=VerboseTestResult, verbosity=2)
+    runner.run(suite)
