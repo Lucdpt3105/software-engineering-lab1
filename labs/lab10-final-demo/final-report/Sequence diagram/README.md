@@ -1,4 +1,4 @@
-File mô tả Sequence Diagram Lab 03 – Zalo Mini App     
+File mô tả Sequence Diagram Và Luong Xu ly DFD Lab 03 – Zalo Mini App     
 Đối tượng tham gia (Actors & Components)   
 - Student (Học sinh)  
 Đăng nhập vào Zalo Mini App.   
