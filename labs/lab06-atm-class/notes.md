@@ -169,73 +169,63 @@
 - **Teacher – Answer** (essay grading):  
   - Quan hệ gián tiếp: `Teacher` có thể chấm `Answer` của `Attempt` khi loại câu hỏi là tự luận.  
 ---
-## 2. Package Diagram
-### 2.1 Danh sách Package & Components
-#### **UI Layer (Zalo Mini App)**
-- **Components**
-  - `StudentUI`
-  - `TeacherUI`
-  - `AuthUI`
-- **Nhiệm vụ**
-  - Hiển thị giao diện cho học sinh & giáo viên.
-  - Gửi yêu cầu đến Backend API.
-#### **API Layer (NodeJS/Express Services)**
-- **Components**
-  - `AuthService`
-  - `ExamService`
-  - `QuestionService`
-  - `AttemptService`
-  - `AnswerService`
-  - `ResultService`
-  - `ImportService`
-  - `StatisticsService`
-  - `NotificationOrchestrator`
-- **Nhiệm vụ**
-  - Xử lý nghiệp vụ chính.
-  - Kết nối UI và Data Layer.
-  - Gửi thông báo qua Notification Service.
-#### **Data Layer (Firestore/Storage)**
-- **Collections**
-  - `UsersCollection`
-  - `ExamsCollection`
-  - `QuestionsCollection`
-  - `ChoicesCollection`
-  - `AttemptsCollection`
-  - `AnswersCollection`
-  - `ResultsCollection`
-  - `QuestionBankCollection`
-  - `AttachmentsStorage`
-  - `Leaderboards`
-- **Nhiệm vụ**
-  - Lưu trữ dữ liệu người dùng, bài thi, câu hỏi, kết quả.
-#### **Infra/External Services**
-- **Components**
-  - `ZaloOAuth`
-  - `ZaloNotification`
-  - `CloudFunctions`
-  - `Workers`
-- **Nhiệm vụ**
-  - Xác thực OAuth.
-  - Gửi thông báo OA/ZNS.
-  - Xử lý tác vụ nền.
+# 2. Package Diagram
+## 2.1 Danh sách Package & Components
+### UI Layer (Zalo Mini App / Web Portal)
+**Components**
+- StudentUI
+- TeacherUI
+- AuthUI
+**Nhiệm vụ**
+- Hiển thị giao diện cho học sinh và giáo viên.  
+- Gửi yêu cầu đến Backend API (Exam, Attempt, Result, Statistics, …).  
 ---
-## 2.2 Relationships 
-- **UI Layer → API Layer**  
-  - StudentUI gọi ExamService, AttemptService, ResultService.  
-  - TeacherUI gọi ExamService, QuestionService, ImportService, StatisticsService.  
-  - AuthUI gọi AuthService.  
-  - Đây là quan hệ **phụ thuộc / uses**: UI phụ thuộc vào API để lấy dữ liệu.
-- **API Layer → Data Layer**  
-  - AuthService truy cập UsersCollection.  
-  - ExamService truy cập ExamsCollection, QuestionsCollection.  
-  - AttemptService truy cập AttemptsCollection, AnswersCollection.  
-  - ResultService truy cập ResultsCollection.  
-  - Đây là quan hệ **phụ thuộc / uses**: API phụ thuộc vào Data Layer để lưu/đọc dữ liệu.
-- **API Layer → External Services (Infra)**  
-  - AuthService dùng ZaloOAuth để xác thực người dùng.  
-  - NotificationOrchestrator gọi ZaloNotification (ZNS/Zalo OA) để gửi nhắc nhở, kết quả.  
-  - CloudFunctions/Workers tự động chạy auto-save, auto-submit, thống kê.  
-  - Đây là quan hệ **phụ thuộc / uses**: API gọi các External Services để mở rộng chức năng.
-- **External Services ↔ Data Layer**  
-  - CloudFunctions đọc/ghi dữ liệu vào Firestore/Storage.  
-  - Đây là quan hệ **trực tiếp** để hỗ trợ tác vụ nền (ví dụ batch compute thống kê).
+### API Layer (NodeJS / Express Services)
+**Components**
+- AuthService
+- ExamService
+- QuestionService
+- AttemptService
+- ResultService
+- StatisticsService
+**Nhiệm vụ**
+- Xử lý toàn bộ nghiệp vụ chính.  
+- Là cầu nối giữa UI Layer và Data Layer.  
+- Tích hợp với Notification Layer để gửi nhắc nhở và kết quả.  
+---
+### Data Layer (Firestore / Storage)
+**Collections**
+- UsersCollection
+- ExamsCollection
+- QuestionsCollection
+- AttemptsCollection
+- ResultsCollection
+- Leaderboards
+**Nhiệm vụ**
+- Lưu trữ dữ liệu người dùng, đề thi, câu hỏi, kết quả, bảng xếp hạng.  
+---
+### Notification Layer
+**Components**
+- ReminderService
+- ResultNotification
+**Nhiệm vụ**
+- Gửi nhắc nhở làm bài thi.  
+- Gửi thông báo kết quả cho học sinh.  
+---
+## 2.2 Relationships
+- **UI Layer → API Layer**
+  - StudentUI gọi: ExamService, AttemptService, ResultService.  
+  - TeacherUI gọi: ExamService, QuestionService, StatisticsService.  
+  - AuthUI gọi: AuthService.  
+  - → Quan hệ *phụ thuộc / uses*: UI phụ thuộc vào API để lấy và gửi dữ liệu.  
+- **API Layer → Data Layer**
+  - AuthService ↔ UsersCollection.  
+  - ExamService ↔ ExamsCollection, QuestionsCollection.  
+  - AttemptService ↔ AttemptsCollection.  
+  - ResultService ↔ ResultsCollection.  
+  - StatisticsService ↔ Leaderboards.  
+  - → Quan hệ *phụ thuộc / uses*: API phụ thuộc vào Data Layer để lưu/đọc dữ liệu.  
+- **API Layer → Notification Layer**
+  - ExamService ↔ ReminderService.  
+  - ResultService ↔ ResultNotification.  
+  - → Quan hệ *phụ thuộc / uses*: API gọi Notification để gửi thông báo.  
