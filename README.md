@@ -5,10 +5,10 @@
 Hệ thống được xây dựng dựa trên cơ sở dữ liệu  với các bảng quản lý user, môn học, bài tập, kỳ thi, tiến độ, chat, forum, và gamification (huy hiệu, bảng xếp hạng).  
 
 ## 👥 Thành viên nhóm  
-Hoàng Cường - Leader   
-Nguyễn Thái Tuấn  
-Phùng Anh Lực   
-Hoàng Quang Minh  
+- Hoàng Cường - Leader   
+- Nguyễn Thái Tuấn  
+- Phùng Anh Lực   
+- Hoàng Quang Minh  
 
 ## 📘 Mini App E-Learning
 
