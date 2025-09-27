@@ -169,64 +169,80 @@
 - **Teacher – Answer** (essay grading):  
   - Quan hệ gián tiếp: `Teacher` có thể chấm `Answer` của `Attempt` khi loại câu hỏi là tự luận.  
 ---
-# 2. Package Diagram    
-## 2.1 Danh sách Package & Components  
-### UI Layer (Zalo Mini App / Web Portal)  
-**Components**  
-- StudentUI    
+# 2. Package Diagram
+
+## 2.1 Danh sách Package & Components
+
+### UI Layer (Zalo Mini App / Web Portal)
+**Components**
+- StudentUI  
 - TeacherUI  
-- AuthUI    
-**Nhiệm vụ**   
-- Hiển thị giao diện cho học sinh và giáo viên.    
-- Gửi yêu cầu đến Backend API (Exam, Attempt, Result, Statistics, …).    
+- AuthUI  
+
+**Nhiệm vụ**
+- Hiển thị giao diện cho học sinh và giáo viên.  
+- Gửi yêu cầu đến Backend API (Exam, Attempt, Result, Statistics, …).  
+
 ---
+
 ### API Layer (NodeJS / Express Services)
 **Components**
-- AuthService
-- ExamService
-- QuestionService
-- AttemptService
-- ResultService
+- AuthService  
+- ExamService  
+- QuestionService  
+- AttemptService  
+- ResultService  
 - StatisticsService  
+
 **Nhiệm vụ**
 - Xử lý toàn bộ nghiệp vụ chính.  
 - Là cầu nối giữa UI Layer và Data Layer.  
-- Tích hợp với Notification Layer để gửi nhắc nhở và kết quả.    
+- Tích hợp với Notification Layer để gửi nhắc nhở và kết quả.  
+
 ---
+
 ### Data Layer (Firestore / Storage)
 **Collections**
-- UsersCollection
-- ExamsCollection
-- QuestionsCollection
-- AttemptsCollection
-- ResultsCollection
-- Leaderboards   
+- UsersCollection  
+- ExamsCollection  
+- QuestionsCollection  
+- AttemptsCollection  
+- ResultsCollection  
+- Leaderboards  
+
 **Nhiệm vụ**
 - Lưu trữ dữ liệu người dùng, đề thi, câu hỏi, kết quả, bảng xếp hạng.  
+
 ---
+
 ### Notification Layer
 **Components**
-- ReminderService
-- ResultNotification   
+- ReminderService  
+- ResultNotification  
+
 **Nhiệm vụ**
 - Gửi nhắc nhở làm bài thi.  
 - Gửi thông báo kết quả cho học sinh.  
+
 ---
+
 ## 2.2 Relationships
+
 - **UI Layer → API Layer**
   - StudentUI gọi: ExamService, AttemptService, ResultService.  
   - TeacherUI gọi: ExamService, QuestionService, StatisticsService.  
   - AuthUI gọi: AuthService.  
   - → Quan hệ *phụ thuộc / uses*: UI phụ thuộc vào API để lấy và gửi dữ liệu.  
-- **API Layer → Data Layer**
-  - AuthService ↔ UsersCollection.  
-  - ExamService ↔ ExamsCollection, QuestionsCollection.  
-  - AttemptService ↔ AttemptsCollection.  
-  - ResultService ↔ ResultsCollection.  
-  - StatisticsService ↔ Leaderboards.  
-  - → Quan hệ *phụ thuộc / uses*: API phụ thuộc vào Data Layer để lưu/đọc dữ liệu.  
-- **API Layer → Notification Layer**
-  - ExamService ↔ ReminderService.  
-  - ResultService ↔ ResultNotification.  
-  - → Quan hệ *phụ thuộc / uses*: API gọi Notification để gửi thông báo.  
 
+- **API Layer → Data Layer**
+  - AuthService ↔ UsersCollection  
+  - ExamService ↔ ExamsCollection, QuestionsCollection  
+  - AttemptService ↔ AttemptsCollection  
+  - ResultService ↔ ResultsCollection  
+  - StatisticsService ↔ Leaderboards  
+  - → Quan hệ *phụ thuộc / uses*: API phụ thuộc vào Data Layer để lưu/đọc dữ liệu.  
+
+- **API Layer → Notification Layer**
+  - ExamService ↔ ReminderService  
+  - ResultService ↔ ResultNotification  
+  - → Quan hệ *phụ thuộc / uses*: API gọi Notification để gửi thông báo.  
