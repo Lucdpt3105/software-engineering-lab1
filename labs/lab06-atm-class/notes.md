@@ -1,73 +1,260 @@
-## 1. Class Diagram – Mini App Học Tập & Thi Trực Tuyến
-### Thành phần chính
-- **User (Student)**  
-  - Thuộc tính: userId, name, email, role  
-  - Phương thức: đăng nhập, xem đề thi, làm bài thi, nộp bài.  
-  - Nhiệm vụ: đại diện cho học sinh tham gia vào hệ thống.  
+**Mô tả class diagram
+1. Notification
 
-- **Teacher**  
-  - Thuộc tính: teacherId, name, email, department  
-  - Phương thức: đăng nhập, tạo đề thi, quản lý câu hỏi, xem kết quả.  
-  - Nhiệm vụ: đại diện cho giáo viên quản lý bài thi và câu hỏi.  
+Attributes
 
-- **Exam**  
-  - Thuộc tính: examId, title, startTime, endTime  
-  - Phương thức: addQuestion(), publish(), getResult()  
-  - Nhiệm vụ: quản lý các bài thi trực tuyến.  
+notificationId: String
 
-- **Question**  
-  - Thuộc tính: questionId, content, type, options, correctAnswer  
-  - Nhiệm vụ: quản lý câu hỏi cho các bài thi.  
+userId: String
 
-- **Attempt**  
-  - Thuộc tính: attemptId, userId, examId, startTime, submitTime  
-  - Nhiệm vụ: ghi lại lần làm bài của học sinh.  
+type: String — (REMINDER | RESULT | SCHEDULE | SYSTEM)
 
-- **Answer**  
-  - Thuộc tính: answerId, attemptId, questionId, selectedOption  
-  - Nhiệm vụ: lưu đáp án học sinh chọn.  
+content: String
 
-- **Result**  
-  - Thuộc tính: resultId, attemptId, score, feedback  
-  - Nhiệm vụ: lưu điểm và phản hồi cho lần thi của học sinh.  
+status: String — (PENDING | SENT | FAILED)
 
-### Quan hệ
-- User **thực hiện** Attempt trên Exam.  
-- Teacher **tạo** Exam và Question.  
-- Exam **bao gồm** nhiều Question.  
-- Attempt **chứa** nhiều Answer.  
-- Result **liên kết** Attempt để tính điểm.  
----
-## 2. Package Diagram – Mini App Học Tập & Thi Trực Tuyến
-### Các Package
-- **UI Layer (Zalo Mini App)**  
-  - Thành phần: StudentUI, TeacherUI, AuthUI  
-  - Nhiệm vụ: giao diện cho học sinh và giáo viên thao tác.  
+sentAt: DateTime
 
-- **API Layer (NodeJS/Express)**  
-  - Thành phần: AuthService, ExamService, QuestionService, AttemptService, AnswerService, ResultService, ImportService, StatisticsService, NotificationOrchestrator  
-  - Nhiệm vụ: xử lý nghiệp vụ chính, cầu nối giữa UI và dữ liệu.  
+Methods
 
-- **Data Layer (Firestore/Storage)**  
-  - Thành phần: UsersCollection, ExamsCollection, QuestionsCollection, AttemptsCollection, AnswersCollection, ResultsCollection, QuestionBankCollection, AttachmentsStorage, Leaderboards  
-  - Nhiệm vụ: lưu trữ dữ liệu về người dùng, bài thi, câu hỏi, kết quả.  
+send(): void — gửi notification cho user
 
-- **Infra/External Services**  
-  - Thành phần: ZaloOAuth, ZaloNotification, CloudFunctions, Workers  
-  - Nhiệm vụ: cung cấp xác thực OAuth, gửi thông báo Zalo OA/ZNS, chạy các tác vụ nền như auto-save, auto-submit.  
+2. User (base)
 
-### Quan hệ chính
-- **UI → API**:  
-  - StudentUI gọi ExamService, AttemptService, ResultService.  
-  - TeacherUI gọi ExamService, QuestionService, ImportService, StatisticsService.  
-  - AuthUI gọi AuthService.  
+Attributes
 
-- **API → Data**:  
-  - Các service đọc/ghi dữ liệu từ Firestore/Storage Collections.  
+userId: String
 
-- **API → External**:  
-  - AuthService kết nối ZaloOAuth để xác thực người dùng.  
-  - NotificationOrchestrator gọi ZaloNotification để gửi nhắc nhở, thông báo kết quả.  
+name: String
 
-- **CloudFunctions** & **Workers**:  
-  - Chạy nền các tác vụ tự động như auto-save, auto-submit, batch compute thống kê.  
+email: String
+
+role: String — (STUDENT | TEACHER | ADMIN)
+
+Methods
+
+loginWithZalo(token: String): AuthResult
+
+updateProfile(data: Map): void
+
+3. Teacher (extends User)
+
+Attributes
+
+teacherId: String (alias userId)
+
+department: String
+
+Methods
+
+createExam(examDTO): Exam
+
+editExam(examId: String, examDTO): Exam
+
+addQuestion(examId: String, questionDTO): Question
+
+importFromExcel(examId: String, fileUrl: String): ImportResult
+
+gradeEssay(attemptId: String, questionId: String, score: float, feedback: String): void
+
+viewStatistics(examId: String): Statistics
+
+4. Student (extends User)
+
+Attributes
+
+studentId: String (alias userId)
+
+classId: String (hoặc classIds: List<String>)
+
+Methods
+
+viewExamList(filter: Map): List<Exam>
+
+startExam(examId: String): Attempt
+
+resumeExam(attemptId: String): Attempt
+
+submitAnswer(attemptId: String, questionId: String, answer: AnswerPayload): void
+
+submitExam(attemptId: String): Result
+
+viewResult(attemptId: String): Result
+
+5. Exam
+
+Attributes
+
+examId: String
+
+title: String
+
+subject: String
+
+type: String — (MCQ | ESSAY | MIXED)
+
+durationMinutes: int
+
+startAt: DateTime
+
+endAt: DateTime
+
+status: String — (DRAFT | PUBLISHED | CLOSED)
+
+questionIds: List<String> (ordered)
+
+config: Map — (immediateResult, allowReview, maxAttempts, shuffleQuestions, …)
+
+Methods
+
+addQuestion(q: Question): void
+
+validate(): ValidationResult
+
+publish(): void
+
+archive(): void
+
+6. QuestionBank
+
+Attributes
+
+bankId: String
+
+ownerId: String
+
+name: String
+
+meta: Map
+
+Methods
+
+search(criteria: Map): List<Question>
+
+addQuestion(q: Question): Question
+
+importQuestions(fileUrl: String): ImportResult
+
+7. Question
+
+Attributes
+
+questionId: String
+
+examId: String (nullable nếu lưu trong bank)
+
+content: String (text / HTML / Markdown)
+
+mediaUrl: List<String>
+
+type: String — (MCQ | ESSAY)
+
+choices?: List<Choice> (nếu MCQ)
+
+weight: float (điểm của câu)
+
+difficulty: String — (EASY | MEDIUM | HARD)
+
+Methods
+
+getChoices(): List<Choice>
+
+isAutoMarkable(): boolean
+
+8. Choice
+
+Attributes
+
+choiceId: String
+
+questionId: String
+
+text: String
+
+isCorrect: boolean
+
+Methods
+
+(value object — thường không có method phức tạp)
+
+9. Attempt
+
+Attributes
+
+attemptId: String
+
+examId: String
+
+studentId: String
+
+startedAt: DateTime
+
+lastSavedAt: DateTime
+
+finishedAt?: DateTime
+
+status: String — (IN_PROGRESS | PAUSED | SUBMITTED | AUTO_SUBMITTED)
+
+score?: float
+
+timeRemainingSeconds?: int
+
+Methods
+
+saveTempAnswer(questionId: String, answerPayload: AnswerPayload): void
+
+autoSave(): void
+
+finalizeAndScore(): Result
+
+resume(): Attempt
+
+10. Answer
+
+Attributes
+
+answerId: String
+
+attemptId: String
+
+questionId: String
+
+response: String | List<String>
+
+updatedAt: DateTime
+
+isAutoMarked: boolean
+
+autoMarkScore?: float
+
+manualScore?: float
+
+feedback?: String
+
+Methods
+
+markAuto(correct: boolean): float
+
+applyManualScore(score: float, feedback: String): void
+
+11. Result
+
+Attributes
+
+resultId: String
+
+attemptId: String
+
+totalScore: float
+
+rank?: int
+
+generatedAt: DateTime
+
+breakdown?: Map<questionId, score>
+
+Methods
+
+computeRank(context): int
+
+publish(): void — (notify student/teacher)
