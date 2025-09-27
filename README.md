@@ -1,34 +1,36 @@
 
-🛠️ Software Engineering Project – Mini App Hỗ Trợ Học Tập & Thi Trực Tuyến  
-📌 Giới thiệu  
-Dự án này được phát triển trong môn Nhập môn Công nghệ Phần mềm.  
-Mục tiêu là áp dụng quy trình phát triển phần mềm, từ phân tích yêu cầu, thiết kế, lập trình, kiểm thử và triển khai.
-  
+## 📝 Giới thiệu
+**Mini App E-Learning là một ứng dụng hỗ trợ học tập trực tuyến dành cho sinh viên và giảng viên**  
+Ứng dụng cung cấp các chức năng chính như: học theo môn học & chủ đề, làm quiz, thi thử và thi chính thức, quản lý tiến độ, tham gia thảo luận, và nhận phản hồi.  
+Hệ thống được xây dựng dựa trên cơ sở dữ liệu  với các bảng quản lý user, môn học, bài tập, kỳ thi, tiến độ, chat, forum, và gamification (huy hiệu, bảng xếp hạng).  
+
 👥 Thành viên nhóm  
 Hoàng Cường - Leader   
 Nguyễn Thái Tuấn  
 Phùng Anh Lực   
-Hoàng Quang Minh   
-🎯 Use Case chính  
-Quản lý người dùng  
-Quản lý sản phẩm/dịch vụ  
-Xử lý giao dịch  
-Báo cáo & thống kê  
-(Sơ đồ use case có thể chèn hình ảnh vào đây)  
-  
-📐 Thiết kế hệ thống  
-Use Case Diagram: Use Case  
-Sequence Diagram: Sequence  
-ERD (Entity Relationship Diagram): ERD  
-💻 Công nghệ sử dụng  
-Ngôn ngữ: Java / Python / JavaScript / PHP  
-IDE: Visual Studio Code  
-CSDL: MySQL / PostgreSQL  
-Quản lý phiên bản: Git + GitHub  
-Mô hình phát triển: Agile – Scrum  
-🚀 Cài đặt & chạy thử  
-```
-Clone repo:
-git clone https://github.com/1yn3r/software-engineering-lab.git
-cd software-engineering-lab
-```
+Hoàng Quang Minh  
+
+# 📘 Mini App E-Learning
+
+## 🚀 Chức năng chính
+- 👩‍🎓 **Student**: Đăng nhập, tham gia môn học, xem tài liệu, làm quiz/thi, nộp bài tập, theo dõi tiến độ, nhận huy hiệu.  
+- 👨‍🏫 **Teacher**: Tạo chủ đề, ra đề, quản lý câu hỏi, chấm điểm, phản hồi, tổ chức meeting online.  
+- 👨‍💼 **Admin**: Quản lý user, môn học, gói subscription, báo cáo và thống kê.  
+- ⚙️ **System**: Gửi thông báo, nhắc deadline, cập nhật leaderboard, backup dữ liệu.  
+
+## 🗄️ Database
+Cơ sở dữ liệu chính bao gồm:  
+- `users`, `subjects`, `topics`, `studymaterials`  
+- `questions`, `answers`, `exams`, `practicetests`, `results`  
+- `progress`, `notes`, `sessions`  
+- `badges`, `leaderboard`, `challenges`  
+- `chatgroups`, `chatmessages`, `forumquestions`, `forumanswers`, `meetings`  
+- `payments`, `subscriptions`, `announcements`, `feedbacks`  
+
+## ⚡ Công nghệ sử dụng
+- **Backend**: Python (Django) + MySQL  
+- **Frontend**: HTML/CSS/JS (có thể nâng cấp React/Next.js)  
+- **Database**: MySQL (script trong `DBMiniAppStudy.sql`)  
+- **Testing**: Jest (unit test), Selenium (integration test)  
+- **Quản lý mã nguồn**: Git/GitHub  
+- **Mô hình phát triển**: Agile – Scrum  
