@@ -24,8 +24,8 @@ File mô tả Sequence Diagram Lab 03 – Zalo Mini App
 + Môi trường chạy Mini App (UI trên Zalo).   
 - Notification Service (Zalo OA / ZNS / Cloud Functions)   
 + Gửi thông báo nhắc lịch thi, nhắc chấm bài, gửi thông báo kết quả thi, thông báo auto-submit do hết giờ.   
-Thông điệp trao đổi (Messages)    
-Use Case chính (theo Sequence Diagram của Student)   
+- Thông điệp trao đổi (Messages)    
++ Use Case chính (theo Sequence Diagram của Student)   
 - Đăng nhập Zalo OAuth:    
 Student → Mini App UI → Zalo Platform (OAuth flow) → Zalo Platform → Mini App UI: trả access token → Mini App UI → Backend API: loginWithToken(token) → Backend API → Firebase: khởi tạo / cập nhật user (Users collection).   
 - Lấy danh sách bài thi:   
@@ -52,19 +52,18 @@ Sau khi lưu result: Backend API → Firebase: cập nhật aggregate stats (đ�
 + Nhắc lịch & Thông báo:   
 Backend API / Cloud Functions → Notification Service → gửi nhắc lịch thi, thông báo auto-submit, thông báo kết quả → Notification Service → Student (via Zalo OA/ZNS)     
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       
-- Đối tượng tham gia (Actors & Components)     
-Teacher (Giáo viên)   
-+ Đăng nhập vào Zalo Mini App / Web Portal.   
-+ Tạo đề thi mới, nhập thông tin cơ bản (tên đề, môn, loại, thời gian, điểm tối đa…).
-+ Thêm câu hỏi mới hoặc chọn từ ngân hàng, hoặc import từ file Excel.    
-+ Cấu hình trộn câu, hiển thị kết quả, số lần làm bài.   
-+ Lưu đề thi, xuất bản hoặc lên lịch thi.   
-+ Nhận nhắc lịch chấm / lịch thi, xem thống kê độ khó và điểm số.   
-- Mini App UI / Web Portal   
-+ Hiển thị form tạo đề thi, ngân hàng câu hỏi, tính năng import file Excel.    
-+ Gọi các API: getCreateExamForm(), submitExamInfo(), addQuestion(), uploadImage(), importFromExcel(), validateExam(), saveExam()…    
-+ Tự động lưu nháp mỗi 2 phút.   
+- Đối tượng tham gia (Actors & Components)       
+Teacher (Giáo viên)      
++ Đăng nhập vào Zalo Mini App / Web Portal.     
++ Tạo đề thi mới, nhập thông tin cơ bản (tên đề, môn, loại, thời gian, điểm tối đa…).  
++ Thêm câu hỏi mới hoặc chọn từ ngân hàng, hoặc import từ file Excel.      
++ Cấu hình trộn câu, hiển thị kết quả, số lần làm bài.     
++ Lưu đề thi, xuất bản hoặc lên lịch thi.      
++ Nhận nhắc lịch chấm / lịch thi, xem thống kê độ khó và điểm số.      
+- Mini App UI / Web Portal     
++ Hiển thị form tạo đề thi, ngân hàng câu hỏi, tính năng import file Excel.   
++ Gọi các API: getCreateExamForm(), submitExamInfo(), addQuestion(), uploadImage(), importFromExcel(), validateExam(), saveExam()…   
++ Tự động lưu nháp mỗi 2 phút.      
 - Backend API (NodeJS/Express)    
 + Xử lý nghiệp vụ tạo đề thi, lưu nháp, thêm câu hỏi, import Excel, upload hình ảnh, validate cấu hình, lưu đề thi cuối cùng.     
 + Giao tiếp với Firebase để lưu trữ đề thi/câu hỏi/ngân hàng.   
