@@ -12,26 +12,24 @@ Bao gồm các bước:
 - Theo dõi bằng Burndown Chart và Calendar
 - Báo cáo Sprint
 
----
-
 ## 📂 Evidence Jira Screenshots
 
 ### 1. Tạo Project và Board trống
 ![Project Board](board1.png)
 
----
+
 
 ### 2. Dashboard / Summary của Project
 ![Project Summary](summary.png)
 
----
+
 
 ### 3. Backlog với Epic & Sprint 1
 - Epic: Quản lý môn học, tài liệu, đề thi
 - Sprint 1: chứa US1–US6 (môn học, tài liệu, đề thi, làm bài thi)
 ![Backlog Sprint](backlog.png)
 
----
+
 
 ### 4. Sprint Board (Kanban View)
 - To Do: US2, US3, US4…
@@ -39,27 +37,27 @@ Bao gồm các bước:
 - Done: US1 đã hoàn thành
 ![Sprint Board](board.png)
 
----
+
 
 ### 5. Sprint Calendar (thời gian chạy Sprint)
 - Sprint 1: 27/09 – 11/10
 ![Sprint Calendar](Screenshot 2025-09-27 144907.png)
 
----
+
 
 ### 6. Danh sách công việc (List View)
 - Hiển thị theo type: Epic, Story, Task
 ![List View](list.png)
 
----
+
 
 ### 7. Timeline / Roadmap
 - Thể hiện Sprint 1 nằm trong tháng 9–10
 ![Timeline View](timeline.png)
 
----
 
-## ✅ Kết luận
+
+### Kết luận
 - Backlog đã được xây dựng với đầy đủ **Epic, User Story, Task**.  
 - Sprint 1 đã được khởi tạo và quản lý bằng **Board**.  
 - Có theo dõi tiến độ bằng **Calendar** và **Timeline**.  
