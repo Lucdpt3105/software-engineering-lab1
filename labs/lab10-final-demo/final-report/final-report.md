@@ -12,7 +12,7 @@
 ## 2. Mô hình UML
 
 * Use Case Diagram (vai trò: Học sinh, Giáo viên, Admin, chức năng chính)
-![alt text](đường_dẫn_ảnh "chú thích tùy chọn")
+![alt text](https://github.com/1yn3r/software-engineering-lab/blob/bc52245931fba87d32cd15d9a08a4aa049641219/labs/lab10-final-demo/final-report/Use%20Cases/h%E1%BB%8Dc%20sinh.jpg)
 
 * Class Diagram (cấu trúc đối tượng, quan hệ giữa các class)
 * Sequence Diagram (luồng thực hiện ví dụ: đăng nhập, làm bài thi, chấm điểm tự động)
