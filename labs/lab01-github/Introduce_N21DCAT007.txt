@@ -1,18 +1,4 @@
-<<<<<<< HEAD
-📄Họ và tên: Hoàng Quang Minh
-#️⃣Mã số sinh viên: N23CCN106
-🎓 Sinh viên ngành Công nghệ thông tin
-
-🚀 Kỹ năng & Công cụ
-🐍 Python | 💠 PHP | ☕ Java | 🌐 HTML/CSS/JS | Express.js | MySQL
-🛠️ Git & GitHub, Visual Studio, VS Code, pycharm
-🛠️ Development process: Agile - Scrum, Waterfall  
-
-📫 Liên hệ
-Email: n23dccn106@student.ptithcm.edu.vn
-GitHub: github.com/minh7709
-=======
-Hello, my name is Hoàng Quang Minh.  
+Hello, my name is Hoàng Cường.  
 I am currently a Software Engineering student at Post and Telecommunications Institute of Technology.  
 
 🔹 Interests:
@@ -29,4 +15,3 @@ I am currently a Software Engineering student at Post and Telecommunications Ins
 - To keep learning about new technologies and trends in the IT industry  
 
 Thank you for reading my introduction.
->>>>>>> 1c9969ad95aaa989d819b157e89c145f71fd1992
