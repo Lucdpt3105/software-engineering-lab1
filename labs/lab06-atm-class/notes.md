@@ -71,9 +71,3 @@
 
 - **CloudFunctions** & **Workers**:  
   - Chạy nền các tác vụ tự động như auto-save, auto-submit, batch compute thống kê.  
-
-
-## 3. Kết luận
-- **Class Diagram** cho thấy cách tổ chức lớp, thuộc tính, phương thức và mối quan hệ cho nghiệp vụ học và thi trực tuyến.  
-- **Package Diagram** cho thấy kiến trúc module/tầng, thể hiện luồng dữ liệu và dịch vụ giữa các thành phần.  
-- Hai sơ đồ này giúp minh họa và chuẩn hóa kiến trúc của hệ thống trước khi triển khai.  
