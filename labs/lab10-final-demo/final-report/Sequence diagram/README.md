@@ -103,4 +103,43 @@ Teacher → Mini App UI: nhấn “Lưu đề thi” → Mini App UI → Backend
 Nếu hợp lệ: Backend API → Firebase: saveExam(status=active) → Backend API → Mini App UI: returnSuccess + redirect trang quản lý đề thi → Notification Service: gửi “Đề thi tạo thành công”.   
 Nếu không hợp lệ: Backend API → Mini App UI: returnError + highlight field lỗi.   
 - Clone đề thi có sẵn (luồng thay thế):   
-Teacher → Mini App UI: chọn “Sao chép đề thi” → Mini App UI → Backend API: cloneExam(examId) → Backend API → Firebase: tạo bản sao → Backend API → Mini App UI: chuyển sang form chỉnh sửa.    
+Teacher → Mini App UI: chọn “Sao chép đề thi” → Mini App UI → Backend API: cloneExam(examId) → Backend API → Firebase: tạo bản sao → Backend API → Mini App UI: chuyển sang form chỉnh sửa.
+##Data Flow Diagram Description: Tham gia thi trắc nghiệm
+
+Data Stores:
+- D1: Thông tin bài thi (mã bài thi, thời gian bắt đầu, thời gian kết thúc, số câu hỏi, điểm tối đa)
+- D2: Kết quả bài thi (mã học sinh, mã bài thi, điểm số, thời gian nộp bài)
+- D3: Thông tin câu hỏi (mã câu hỏi, nội dung câu hỏi, các lựa chọn, đáp án đúng, mã bài thi)
+- D4: Đáp án tạm thời (mã học sinh, mã câu hỏi, đáp án đã chọn, thời gian chọn)
+- D5: Không có
+- D6: Không có
+
+Processing Steps:
+- B1: Nhận yêu cầu tham gia bài thi từ học sinh (mã học sinh, mã bài thi).
+- B2: Đọc D1 để kiểm tra tính hợp lệ của bài thi (thời gian cho phép, trạng thái bài thi).
+- B3: Đọc D3 để hiển thị câu hỏi và các lựa chọn cho học sinh.
+- B4: Lưu đáp án tạm thời của học sinh vào D4 (sau mỗi lần chọn hoặc mỗi 30 giây).
+- B5: Kiểm tra thời gian làm bài bằng cách so sánh với thời gian trong D1.
+- B6: Nhận yêu cầu nộp bài từ học sinh hoặc tự động nộp khi hết thời gian.
+- B7: Tính điểm dựa trên đáp án trong D4 và đáp án đúng trong D3.
+- B8: Hiển thị kết quả bài thi cho học sinh và lưu kết quả vào D2.
+
+Alternative Flows:
+- A1 (Hết thời gian làm bài):
+  - Trigger: Thời gian làm bài (từ D1) kết thúc.
+  - Steps: 
+    - B5 phát hiện hết thời gian.
+    - Chuyển sang B6 (tự động nộp bài).
+    - Tiếp tục từ B7 (tính điểm).
+- A2 (Mất kết nối internet):
+  - Trigger: Kết nối internet bị gián đoạn.
+  - Steps:
+    - B4 lưu đáp án tạm thời vào D4 trước khi mất kết nối.
+    - Hiển thị thông báo mất kết nối.
+    - Khi kết nối được khôi phục, đọc D4 để tiếp tục từ câu hỏi cuối cùng.
+- A3 (Học sinh thoát giữa chừng):
+  - Trigger: Học sinh đóng ứng dụng hoặc thoát bài thi.
+  - Steps:
+    - B4 lưu tiến độ hiện tại vào D4.
+    - Khi học sinh quay lại, kiểm tra D1 (thời gian bài thi) và D4 để cho phép tiếp tục.
+
