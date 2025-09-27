@@ -18,6 +18,28 @@
 --
 -- Table structure for table `announcements`
 --
+-- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
+--
+-- Host: localhost    Database: learning2
+-- ------------------------------------------------------
+-- Server version	9.4.0
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `announcements`
+--
+
+CREATE DATABASE IF NOT EXISTS `learning2` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS `announcements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -28,7 +50,7 @@ CREATE TABLE `announcements` (
   `announcement_content` text,
   `announcement_date` datetime DEFAULT NULL,
   PRIMARY KEY (`announcement_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,7 +77,7 @@ CREATE TABLE `answers` (
   PRIMARY KEY (`answer_id`),
   KEY `answer_question_id` (`answer_question_id`),
   CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`answer_question_id`) REFERENCES `questions` (`question_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +101,7 @@ CREATE TABLE `badges` (
   `badge_name` varchar(50) DEFAULT NULL,
   `badge_description` text,
   PRIMARY KEY (`badge_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +124,7 @@ CREATE TABLE `categories` (
   `category_id` int NOT NULL AUTO_INCREMENT,
   `category_name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +153,7 @@ CREATE TABLE `chatgroupmembers` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `chatgroupmembers_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `chatgroups` (`group_id`),
   CONSTRAINT `chatgroupmembers_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,7 +180,7 @@ CREATE TABLE `chatgroups` (
   PRIMARY KEY (`group_id`),
   KEY `created_by` (`created_by`),
   CONSTRAINT `chatgroups_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,7 +210,7 @@ CREATE TABLE `chatmessages` (
   KEY `sender_id` (`sender_id`),
   CONSTRAINT `chatmessages_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `chatgroups` (`group_id`),
   CONSTRAINT `chatmessages_ibfk_2` FOREIGN KEY (`sender_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,7 +235,7 @@ CREATE TABLE `dailychallenges` (
   `daily_challenge_description` text,
   `daily_challenge_date` date DEFAULT NULL,
   PRIMARY KEY (`daily_challenge_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -241,7 +263,7 @@ CREATE TABLE `examquestions` (
   KEY `exam_question_question_id` (`exam_question_question_id`),
   CONSTRAINT `examquestions_ibfk_1` FOREIGN KEY (`exam_question_exam_id`) REFERENCES `exams` (`exam_id`),
   CONSTRAINT `examquestions_ibfk_2` FOREIGN KEY (`exam_question_question_id`) REFERENCES `questions` (`question_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -272,7 +294,7 @@ CREATE TABLE `examresults` (
   CONSTRAINT `examresults_ibfk_1` FOREIGN KEY (`exam_result_user_exam_id`) REFERENCES `userexams` (`user_exam_id`),
   CONSTRAINT `examresults_ibfk_2` FOREIGN KEY (`exam_result_question_id`) REFERENCES `questions` (`question_id`),
   CONSTRAINT `examresults_ibfk_3` FOREIGN KEY (`exam_result_selected_answer_id`) REFERENCES `answers` (`answer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -301,7 +323,7 @@ CREATE TABLE `exams` (
   PRIMARY KEY (`exam_id`),
   KEY `exam_subject_id` (`exam_subject_id`),
   CONSTRAINT `exams_ibfk_1` FOREIGN KEY (`exam_subject_id`) REFERENCES `subjects` (`subject_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -329,7 +351,7 @@ CREATE TABLE `favoritequestions` (
   KEY `favorite_question_question_id` (`favorite_question_question_id`),
   CONSTRAINT `favoritequestions_ibfk_1` FOREIGN KEY (`favorite_question_user_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `favoritequestions_ibfk_2` FOREIGN KEY (`favorite_question_question_id`) REFERENCES `questions` (`question_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -356,7 +378,7 @@ CREATE TABLE `feedbacks` (
   PRIMARY KEY (`feedback_id`),
   KEY `feedback_user_id` (`feedback_user_id`),
   CONSTRAINT `feedbacks_ibfk_1` FOREIGN KEY (`feedback_user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -386,7 +408,7 @@ CREATE TABLE `forumanswers` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `forumanswers_ibfk_1` FOREIGN KEY (`forum_question_id`) REFERENCES `forumquestions` (`forum_question_id`),
   CONSTRAINT `forumanswers_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -414,7 +436,7 @@ CREATE TABLE `forumquestions` (
   PRIMARY KEY (`forum_question_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `forumquestions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -441,7 +463,7 @@ CREATE TABLE `leaderboard` (
   PRIMARY KEY (`leaderboard_id`),
   KEY `leaderboard_user_id` (`leaderboard_user_id`),
   CONSTRAINT `leaderboard_ibfk_1` FOREIGN KEY (`leaderboard_user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -470,7 +492,7 @@ CREATE TABLE `meetingparticipants` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `meetingparticipants_ibfk_1` FOREIGN KEY (`meeting_id`) REFERENCES `meetings` (`meeting_id`),
   CONSTRAINT `meetingparticipants_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -499,7 +521,7 @@ CREATE TABLE `meetings` (
   PRIMARY KEY (`meeting_id`),
   KEY `host_user_id` (`host_user_id`),
   CONSTRAINT `meetings_ibfk_1` FOREIGN KEY (`host_user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -526,7 +548,7 @@ CREATE TABLE `notes` (
   PRIMARY KEY (`note_id`),
   KEY `note_user_id` (`note_user_id`),
   CONSTRAINT `notes_ibfk_1` FOREIGN KEY (`note_user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -554,7 +576,7 @@ CREATE TABLE `payments` (
   PRIMARY KEY (`payment_id`),
   KEY `payment_user_id` (`payment_user_id`),
   CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`payment_user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -585,7 +607,7 @@ CREATE TABLE `practiceresults` (
   CONSTRAINT `practiceresults_ibfk_1` FOREIGN KEY (`practice_result_user_practice_id`) REFERENCES `userpractices` (`user_practice_id`),
   CONSTRAINT `practiceresults_ibfk_2` FOREIGN KEY (`practice_result_question_id`) REFERENCES `questions` (`question_id`),
   CONSTRAINT `practiceresults_ibfk_3` FOREIGN KEY (`practice_result_selected_answer_id`) REFERENCES `answers` (`answer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -613,7 +635,7 @@ CREATE TABLE `practicetestquestions` (
   KEY `practice_test_question_question_id` (`practice_test_question_question_id`),
   CONSTRAINT `practicetestquestions_ibfk_1` FOREIGN KEY (`practice_test_question_test_id`) REFERENCES `practicetests` (`practice_test_id`),
   CONSTRAINT `practicetestquestions_ibfk_2` FOREIGN KEY (`practice_test_question_question_id`) REFERENCES `questions` (`question_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -641,7 +663,7 @@ CREATE TABLE `practicetests` (
   PRIMARY KEY (`practice_test_id`),
   KEY `practice_test_subject_id` (`practice_test_subject_id`),
   CONSTRAINT `practicetests_ibfk_1` FOREIGN KEY (`practice_test_subject_id`) REFERENCES `subjects` (`subject_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -670,7 +692,7 @@ CREATE TABLE `progresstracker` (
   KEY `progress_tracker_topic_id` (`progress_tracker_topic_id`),
   CONSTRAINT `progresstracker_ibfk_1` FOREIGN KEY (`progress_tracker_user_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `progresstracker_ibfk_2` FOREIGN KEY (`progress_tracker_topic_id`) REFERENCES `topics` (`topic_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -700,7 +722,7 @@ CREATE TABLE `questions` (
   KEY `question_topic_id` (`question_topic_id`),
   CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`question_type_id`) REFERENCES `questiontypes` (`question_type_id`),
   CONSTRAINT `questions_ibfk_2` FOREIGN KEY (`question_topic_id`) REFERENCES `topics` (`topic_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -723,7 +745,7 @@ CREATE TABLE `questiontypes` (
   `question_type_id` int NOT NULL AUTO_INCREMENT,
   `question_type_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`question_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -752,7 +774,7 @@ CREATE TABLE `studymaterials` (
   PRIMARY KEY (`study_material_id`),
   KEY `study_material_topic_id` (`study_material_topic_id`),
   CONSTRAINT `studymaterials_ibfk_1` FOREIGN KEY (`study_material_topic_id`) REFERENCES `topics` (`topic_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -782,7 +804,7 @@ CREATE TABLE `studysessions` (
   KEY `study_session_user_id` (`study_session_user_id`),
   CONSTRAINT `studysessions_ibfk_1` FOREIGN KEY (`study_session_topic_id`) REFERENCES `topics` (`topic_id`),
   CONSTRAINT `studysessions_ibfk_2` FOREIGN KEY (`study_session_user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -810,7 +832,7 @@ CREATE TABLE `subjectcategories` (
   KEY `subject_category_category_id` (`subject_category_category_id`),
   CONSTRAINT `subjectcategories_ibfk_1` FOREIGN KEY (`subject_category_subject_id`) REFERENCES `subjects` (`subject_id`),
   CONSTRAINT `subjectcategories_ibfk_2` FOREIGN KEY (`subject_category_category_id`) REFERENCES `categories` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -833,7 +855,7 @@ CREATE TABLE `subjects` (
   `subject_id` int NOT NULL AUTO_INCREMENT,
   `subject_name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`subject_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -861,7 +883,7 @@ CREATE TABLE `subscriptions` (
   PRIMARY KEY (`subscription_id`),
   KEY `subscription_user_id` (`subscription_user_id`),
   CONSTRAINT `subscriptions_ibfk_1` FOREIGN KEY (`subscription_user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -887,7 +909,7 @@ CREATE TABLE `topics` (
   PRIMARY KEY (`topic_id`),
   KEY `topic_subject_id` (`topic_subject_id`),
   CONSTRAINT `topics_ibfk_1` FOREIGN KEY (`topic_subject_id`) REFERENCES `subjects` (`subject_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -915,7 +937,7 @@ CREATE TABLE `userbadges` (
   KEY `user_badge_badge_id` (`user_badge_badge_id`),
   CONSTRAINT `userbadges_ibfk_1` FOREIGN KEY (`user_badge_user_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `userbadges_ibfk_2` FOREIGN KEY (`user_badge_badge_id`) REFERENCES `badges` (`badge_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -944,7 +966,7 @@ CREATE TABLE `userchallenges` (
   KEY `user_challenge_challenge_id` (`user_challenge_challenge_id`),
   CONSTRAINT `userchallenges_ibfk_1` FOREIGN KEY (`user_challenge_user_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `userchallenges_ibfk_2` FOREIGN KEY (`user_challenge_challenge_id`) REFERENCES `dailychallenges` (`daily_challenge_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -973,7 +995,7 @@ CREATE TABLE `userexams` (
   KEY `user_exam_user_id` (`user_exam_user_id`),
   CONSTRAINT `userexams_ibfk_1` FOREIGN KEY (`user_exam_exam_id`) REFERENCES `exams` (`exam_id`),
   CONSTRAINT `userexams_ibfk_2` FOREIGN KEY (`user_exam_user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1002,7 +1024,7 @@ CREATE TABLE `userpractices` (
   KEY `user_practice_user_id` (`user_practice_user_id`),
   CONSTRAINT `userpractices_ibfk_1` FOREIGN KEY (`user_practice_test_id`) REFERENCES `practicetests` (`practice_test_id`),
   CONSTRAINT `userpractices_ibfk_2` FOREIGN KEY (`user_practice_user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1030,9 +1052,8 @@ CREATE TABLE `users` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `status` enum('active','inactive') DEFAULT 'active',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 --
 -- Dumping data for table `users`
 --
@@ -1052,3 +1073,51 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2025-09-27 15:34:49
+
+--test
+
+-- -- 1. Thêm sinh viên
+-- INSERT INTO users(user_id, user_name, user_email, user_password, user_role)
+-- VALUES (1, 'Nguyen Van A', 'vana@example.com', '123456', 'student');
+
+-- -- 2. Thêm môn học
+-- INSERT INTO subjects(subject_id, subject_name)
+-- VALUES (1, 'Toán học');
+
+-- -- 3. Thêm topic (chủ đề) thuộc môn Toán
+-- INSERT INTO topics(topic_id, topic_name, topic_subject_id)
+-- VALUES (1, 'Số học cơ bản', 1);
+
+-- -- 4. Thêm loại câu hỏi (multiple choice)
+-- INSERT INTO questiontypes(question_type_id, question_type_name)
+-- VALUES (1, 'Multiple Choice');
+
+-- -- 5. Thêm đề thi
+-- INSERT INTO exams(exam_id, exam_title, exam_subject_id, exam_date, exam_duration, total_marks)
+-- VALUES (1, 'Đề kiểm tra Toán số 1', 1, '2025-09-27', 30, 10);
+
+-- -- 6. Thêm câu hỏi
+-- INSERT INTO questions(question_id, question_text, question_topic_id, question_type_id, question_difficulty)
+-- VALUES
+-- (1, '2 + 2 = ?', 1, 1, 1),
+-- (2, '5 * 3 = ?', 1, 1, 1);
+
+-- -- 7. Thêm đáp án cho mỗi câu
+-- INSERT INTO answers(answer_id, answer_text, answer_question_id, is_correct)
+-- VALUES
+-- -- Câu 1
+-- (1, '3', 1, 0),
+-- (2, '4', 1, 1), -- đúng
+-- (3, '5', 1, 0),
+-- (4, '6', 1, 0),
+-- -- Câu 2
+-- (5, '15', 2, 1), -- đúng
+-- (6, '20', 2, 0),
+-- (7, '25', 2, 0),
+-- (8, '30', 2, 0);
+
+-- -- 8. Gán câu hỏi vào đề thi
+-- INSERT INTO examquestions(exam_question_id, exam_question_exam_id, exam_question_question_id)
+-- VALUES
+-- (1, 1, 1),
+-- (2, 1, 2);
